@@ -1,4 +1,4 @@
---For the AirBnB clone
+-- for the AirBnB clone
 
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
 CREATE USER 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
