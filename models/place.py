@@ -3,16 +3,47 @@
 from models.base_model import BaseModel
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """ A place to stay """
-    city_id = ""
-    user_id = ""
-    name = ""
-    description = ""
-    number_rooms = 0
-    number_bathrooms = 0
-    max_guest = 0
-    price_by_night = 0
-    latitude = 0.0
-    longitude = 0.0
+    __tablename__ = "places"
+
+    
+    city_id = Column(String(60), nullable=False, ForeignKey("cities.id"))
+    user_id = Column(String(60), nullable=False, ForeignKey("users.id"))
+    name = Column(String(128), nullable=False)
+    description = Column(String(1024), nullable=True)
+    number_rooms = Column(Integer, nullable=False, default=0)
+    number_bathrooms = Column(Integer, nullable=False, default=0)
+    max_guest = Column(Integer, nullable=False, default=0)
+    price_by_night = Column(Integer, nullable=False, default=0)
+    latitude = Column(Float, nullable=True)
+    longitude = Column(Float, nullable=True)
     amenity_ids = []
+    reviews = relationship("Review", "place")
+
+    amenities = relationship(
+        "Amenity",
+        secondary="place_amenity",
+        viewonly=False, backref="place")
+
+    @property
+    def reviews(self):
+        """ getter attribute for reviews of places """
+        obj = storage.all()
+        reviews = []
+        print("OBJ:", obj)
+        print("MY DICT:", my_dict)
+        for key, value in my_dict.items():
+            if "Review" in key and value.place_id == self.id:
+                reviews.append(value)
+        return reviews
+
+    @property
+    def amenities(self):
+        """ getter attribute for amenities of places """
+        obj = storage.all()
+        amenities = []
+        for key, value in obj:
+            if "Amenity" in key and value.place_id == self.id:
+                amenities.append(value)
+        return amenities
