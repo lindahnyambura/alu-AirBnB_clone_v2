@@ -19,3 +19,31 @@ class Place(BaseModel, Base):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     amenity_ids = []
+    reviews = relationship("Review", "place")
+
+    amenities = relationship(
+        "Amenity",
+        secondary="place_amenity",
+        viewonly=False, backref="place")
+
+    @property
+    def reviews(self):
+        """ getter attribute for reviews of places """
+        obj = storage.all()
+        reviews = []
+        print("OBJ:", obj)
+        print("MY DICT:", my_dict)
+        for key, value in my_dict.items():
+            if "Review" in key and value.place_id == self.id:
+                reviews.append(value)
+        return reviews
+
+    @property
+    def amenities(self):
+        """ getter attribute for amenities of places """
+        obj = storage.all()
+        amenities = []
+        for key, value in obj:
+            if "Amenity" in key and value.place_id == self.id:
+                amenities.append(value)
+        return amenities
