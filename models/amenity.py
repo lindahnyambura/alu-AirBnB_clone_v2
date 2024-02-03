@@ -3,5 +3,8 @@
 from models.base_model import BaseModel
 
 
-class Amenity(BaseModel):
-    name = ""
+class Amenity(BaseModel, Base):
+    """defines the table for amenities"""
+    __tablename__ = "amenities"
+    name = Column(String(128), nullable=False)
+    place_amenities=
