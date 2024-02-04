@@ -26,7 +26,7 @@ class DBStorage:
 
     def __init__(self) -> None:
         """
-        Initializes the DBStorage instance 
+        Initializes the DBStorage instance
         and establishes a connection to the MySQL database using SQLAlchemy
         """
         username = getenv("HBNB_MYSQL_USER")
