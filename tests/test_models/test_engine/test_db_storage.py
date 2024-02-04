@@ -33,7 +33,8 @@ class TestDBStorage(unittest.TestCase):
     def test_city(self):
         """ test user """
         city = City(name="Fremont")
-        city.state_id = state.id
+        state = State()
+        city.state_id ="<new state ID>" name="Fremont"
         city.save()
         self.assertTrue(city.id in self.storage.all())
         self.assertEqual(city.name, "Fremont")
