@@ -4,7 +4,6 @@ from models.base_model import BaseModel
 from sqlalchemy import Column, String, Integer, Float
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
-from models import storage
 
 
 class Place(BaseModel):
@@ -32,6 +31,7 @@ class Place(BaseModel):
     @property
     def reviews(self):
         """ Getter attribute for reviews of places """
+        from models import storage
         obj = storage.all()
         reviews = []
         for key, value in obj.items():
@@ -42,6 +42,7 @@ class Place(BaseModel):
     @property
     def amenities(self):
         """ Getter attribute for amenities of places """
+        from models import storage
         obj = storage.all()
         amenities = []
         for key, value in obj.items():
