@@ -44,7 +44,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """
-        Retrieves all objects of a specified class 
+        Retrieves all objects of a specified class
         or all objects if class is not specified.
         """
         objs_list = []
@@ -91,7 +91,7 @@ class DBStorage:
         """
         Base.metadata.drop_all(self.__engine)
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, 
+        session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
