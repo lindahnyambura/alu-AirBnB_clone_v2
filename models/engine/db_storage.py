@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 This script defines a class DBStorage to handle database connections, SQL commands, and interactions with models using SQLAlchemy
 """
@@ -22,6 +21,7 @@ class DBStorage:
     """
     __engine = None
     __session = None
+
     def __init__(self) -> None:
         """
         Initializes the DBStorage instance and establishes a connection to the MySQL database using SQLAlchemy
@@ -60,7 +60,7 @@ class DBStorage:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             obj_dict[key] = obj
         return obj_dict
-    
+
     def new(self, obj):
         """
         Adds a new object to the database session
@@ -72,18 +72,18 @@ class DBStorage:
         """"
         Commits changes to the database session
         """
-        self.__session.commit()    
-      
+        self.__session.commit()
+
     def delete(self, obj=None):
         """
-        deletes  the specified object from the database session
+        Deletes the specified object from the database session
         """
         if obj:
             self.__session.delete(obj)
 
     def reload(self):
         """
-        reloads the database session and recreates all tables
+        Reloads the database session and recreates all tables
         """
         Base.metadata.drop_all(self.__engine)
         Base.metadata.create_all(self.__engine)
