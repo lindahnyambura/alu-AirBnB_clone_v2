@@ -41,6 +41,7 @@ class Place(BaseModel):
     def amenities(self):
         """ Getter attribute for amenities of places """
         from models import storage
+        from models.amenity import Amenity
         obj = storage.all()
         amenities = []
         for key, value in obj.items():
