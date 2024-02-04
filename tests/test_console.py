@@ -6,6 +6,7 @@ from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
 from models.engine.file_storage import FileStorage
+import pep8
 
 
 class TestHBNBCommand(unittest.TestCase):
