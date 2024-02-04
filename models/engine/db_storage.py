@@ -2,6 +2,7 @@
 """
 This script defines a class DBStorage to handle database connections, SQL commands, and interactions with models using SQLAlchemy
 """
+import sqlalchemy
 from sqlalchemy import create_engine
 from os import getenv
 from sqlalchemy.orm import scoped_session, sessionmaker, Session
