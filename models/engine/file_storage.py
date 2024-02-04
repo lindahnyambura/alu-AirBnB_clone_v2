@@ -20,7 +20,8 @@ class FileStorage:
             if isinstance(cls, str):
                 cls = globals().get(cls)
             if cls and issubclass(cls, BaseModel):
-                cls_dict = {k: v for k, v in self.__objects.items() if isinstance(v, cls)}
+                cls_dict = {k: v for k, 
+                            v in self.__objects.items() if isinstance(v, cls)}
                 return cls_dict
         return FileStorage.__objects
 
@@ -58,7 +59,7 @@ class FileStorage:
     def delete(self, obj=None):
         """Delete obj from __objects if it's inside"""
         if obj is None:
-            return 
+            return
         obj_to_del = f"{obj.__class__.__name__}.{obj.id}"
 
         try:

@@ -1,5 +1,6 @@
 """
-This script defines a class DBStorage to handle database connections, SQL commands, and interactions with models using SQLAlchemy
+This script defines a class DBStorage to handle database connections,
+SQL commands, and interactions with models using SQLAlchemy
 """
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -17,14 +18,16 @@ from models.user import User
 
 class DBStorage:
     """
-    DBStorage class to handle database connections, SQL commands, and interactions with models using SQLAlchemy
+    DBStorage class to handle database connections,
+    SQL commands, and interactions with models using SQLAlchemy
     """
     __engine = None
     __session = None
 
     def __init__(self) -> None:
         """
-        Initializes the DBStorage instance and establishes a connection to the MySQL database using SQLAlchemy
+        Initializes the DBStorage instance 
+        and establishes a connection to the MySQL database using SQLAlchemy
         """
         username = getenv("HBNB_MYSQL_USER")
         password = getenv("HBNB_MYSQL_PWD")
@@ -41,7 +44,8 @@ class DBStorage:
 
     def all(self, cls=None):
         """
-        Retrieves all objects of a specified class or all objects if class is not specified.
+        Retrieves all objects of a specified class 
+        or all objects if class is not specified.
         """
         objs_list = []
         if cls:
@@ -87,6 +91,7 @@ class DBStorage:
         """
         Base.metadata.drop_all(self.__engine)
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine, 
+                                       expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
