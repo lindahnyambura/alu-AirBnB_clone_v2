@@ -68,3 +68,10 @@ class TestDBStorage(unittest.TestCase):
         review.save()
         self.assertTrue(review.id in self.storage.all())
         self.assertEqual(review.text, "no comment")
+    
+    def test_create_state_california(self):
+        """ test creation of a State with name 'California' """
+        state = State(name="California")
+        state.save()
+        self.assertTrue(state.id in self.storage.all())
+        self.assertEqual(state.name, "California")
