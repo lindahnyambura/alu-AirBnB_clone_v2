@@ -11,7 +11,7 @@ from sqlalchemy import String
 Base = declarative_base()
 
 
-class BaseModel:
+class BaseModel(Base):
     """Defines the BaseModel class.
 
     Attributes:
