@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """ new class for sqlAlchemy """
 from os import getenv
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -15,7 +14,7 @@ from models.amenity import Amenity
 
 
 class DBStorage:
-    """ create tables"""
+    """ create tables in environmental"""
     __engine = None
     __session = None
 
